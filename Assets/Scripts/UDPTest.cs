@@ -6,9 +6,7 @@ using UnityEngine;
 public class UDPTest : MonoBehaviour
 {
     [SerializeField]
-    private string _sendData = "test";
-    [SerializeField]
-    private string host = "192.168.1.8";
+    private string host = "raspberrypi.local";
     [SerializeField]
     private int port = 9000;
         
@@ -22,12 +20,9 @@ public class UDPTest : MonoBehaviour
         WaitReceive(token).Forget();
     }
 
-    private void Update()
+    public void Send(string sendData)
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _udp.Send(_sendData).Forget();
-        }
+        _udp.Send(sendData).Forget();
     }
         
     async UniTaskVoid WaitReceive(CancellationToken token)

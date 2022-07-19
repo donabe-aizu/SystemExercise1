@@ -18,15 +18,15 @@ public class UDP
     {
         byte[] message = Encoding.UTF8.GetBytes(data);
         await _client.SendAsync(message, message.Length);
-        Debug.Log("Send");
+        Debug.Log("Send: " + data);
     }
 
     public async UniTask<string> Receive(CancellationToken token = default)
     {
         var result = await _client.ReceiveAsync();
-        Debug.Log("Receive");
         byte[] getByte = result.Buffer;
         string data = Encoding.UTF8.GetString(getByte);
+        Debug.Log("Receive: " + data);
         return data;
     }
 }

@@ -29,8 +29,7 @@ public class UDPTest : MonoBehaviour
     {
         while (!token.IsCancellationRequested)
         {
-            string data = await _udp.Receive(token);
-            Debug.Log(data);
+            await _udp.Receive(token);
             await UniTask.Delay(TimeSpan.FromSeconds(3), cancellationToken: token);
         }
     }

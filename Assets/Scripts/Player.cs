@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal")*moveSpeed, Input.GetAxis("Vertical")*moveSpeed, playerSpeed) * Time.deltaTime);
+        // _rigidbody.MovePosition(transform.position + new Vector3(Input.GetAxis("Horizontal")*moveSpeed, Input.GetAxis("Vertical")*moveSpeed, playerSpeed) * Time.deltaTime);
+        _rigidbody.MovePosition(transform.position + new Vector3(udp.x*moveSpeed, udp.y*moveSpeed, playerSpeed) * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour
     private void GameOver()
     {
         _isGameOrver = true;
-        udp.Send("Hit");
+        udp.isHit = true;
     }
 
     private void GameClear()
